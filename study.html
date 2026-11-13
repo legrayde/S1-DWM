@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مساحة الدراسة | Espace d’étude</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=JetBrains+Mono:wght@500;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#282a36;--card:#343746;--line:#44475a;--fg:#f8f8f2;--mute:#8b93b8;--cyan:#8be9fd;--green:#50fa7b;--orange:#ffb86c;--pink:#ff79c6;--purple:#bd93f9;--red:#ff5555;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:Cairo,system-ui,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+header{padding:14px 18px 8px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{margin:0;font:800 26px/1.2 Cairo,sans-serif;color:var(--purple)}
+header p{margin:0;color:var(--mute);font-size:13px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:6px 18px 10px;scrollbar-width:none}
+nav button{flex:none;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font:600 14px Cairo,sans-serif;cursor:pointer}
+nav button.on{background:var(--purple);color:var(--bg);border-color:var(--purple)}
+main{flex:1;min-height:0;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 18px 16px;scroll-behavior:smooth}
+section{flex:none;width:min(86vw,380px);scroll-snap-align:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+h2{margin:0;font-size:18px;color:var(--cyan)}
+h2 small{display:block;color:var(--mute);font-weight:400;font-size:12px}
+input,textarea,button.b{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--pink);outline-offset:1px}
+textarea{resize:none;flex:1;min-height:180px}
+button.b{width:auto;cursor:pointer;background:var(--purple);color:var(--bg);font-weight:700;border:0}
+button.g{background:var(--green)}button.r{background:var(--red)}button.o{background:var(--orange)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row input{flex:1;min-width:0}
+.time{font:800 56px/1 'JetBrains Mono',monospace;color:var(--green);text-align:center;direction:ltr;padding:10px 0}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+li{display:flex;gap:8px;align-items:center;background:var(--bg);border-radius:8px;padding:8px 10px}
+li span{flex:1;overflow-wrap:anywhere}
+li.done span{text-decoration:line-through;color:var(--mute)}
+li .x{background:none;border:0;color:var(--red);cursor:pointer;font-size:16px}
+.cd{color:var(--orange);font-family:'JetBrains Mono',monospace;font-size:13px}
+.card{background:var(--bg);border:1px dashed var(--purple);border-radius:12px;padding:22px 12px;min-height:110px;text-align:center;cursor:pointer;display:grid;place-items:center;font-weight:600;white-space:pre-wrap}
+.avg{font:800 40px 'JetBrains Mono',monospace;color:var(--pink);text-align:center;direction:ltr}
+.mute{color:var(--mute);font-size:13px;text-align:center}
+details{background:var(--bg);border-radius:8px;padding:8px 10px;margin-top:6px}summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;color:var(--mute);white-space:pre-wrap}
+a.big{display:block;text-align:center;background:var(--green);color:var(--bg);font-weight:800;text-decoration:none;border-radius:10px;padding:14px;font-size:17px}
+.fact{background:var(--bg);border-radius:10px;padding:12px;line-height:1.7}
+.circle{width:120px;height:120px;border-radius:50%;border:3px solid var(--cyan);margin:6px auto;display:grid;place-items:center;text-align:center;font-weight:700;transition:transform 4s ease-in-out}
+footer{padding:6px 18px 12px;text-align:center;color:var(--mute);font-size:13px}footer b{color:var(--green);font-family:'JetBrains Mono',monospace}
+@media (prefers-reduced-motion:reduce){main{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><h1>مساحة الدراسة</h1><p>Espace d’étude</p></header>
+<nav id="nav"></nav>
+<main id="main">
+
+<section id="archive"><h2>الأرشيف الدراسي<small>Archive d’étude</small></h2>
+<p class="mute">دروس كلية الطب والاختبارات وكل الموارد في مجلد واحد<br>Cours, quiz et toutes les ressources dans un seul dossier</p>
+<a class="big" href="https://drive.google.com/drive/folders/1Fymliz6mNfAlOnowXs37vCIM6varKA-e" target="_blank" rel="noopener">فتح الأرشيف · Ouvrir l’archive ↗</a></section>
+
+<section id="timer"><h2>مؤقّت التركيز<small>Minuteur de concentration</small></h2>
+<div class="time" id="t">25:00</div>
+<div class="row"><button class="b" data-m="-5">−5</button><button class="b" data-m="-1">−1</button><button class="b" data-m="1">+1</button><button class="b" data-m="5">+5</button></div>
+<div class="row"><button class="b g" id="go">ابدأ · Démarrer</button><button class="b o" id="rs">إعادة · Réinit.</button></div>
+<p class="mute" id="stat"></p></section>
+
+<section id="tasks"><h2>مهامي<small>Mes tâches</small></h2>
+<div class="row"><input id="ti" placeholder="مهمة جديدة · Nouvelle tâche"><button class="b" id="ta">+</button></div><ul id="tl"></ul></section>
+
+<section id="exams"><h2>الامتحانات<small>Examens</small></h2>
+<input id="en" placeholder="المادة · Matière"><div class="row"><input id="ed" type="date"><button class="b" id="ea">+</button></div><ul id="el"></ul></section>
+
+<section id="cards"><h2>أسئلة المراجعة وبطاقات<small>Questions et cartes de révision</small></h2>
+<div class="row" id="subj"></div>
+<div class="card" id="cv" tabindex="0" role="button">اختر مادة · Choisissez une matière</div>
+<p class="mute">المس البطاقة لتقلبها · Touchez la carte pour la retourner</p>
+<div class="row"><button class="b" id="cn">التالية · Suivante</button></div>
+<div id="ql"></div></section>
+
+<section id="grades"><h2>معدلي<small>Ma moyenne</small></h2>
+<input id="gn" placeholder="المادة · Matière"><div class="row"><input id="gv" type="number" min="0" max="20" step="0.25" placeholder="/20"><input id="gc" type="number" min="1" step="0.5" placeholder="Coef"><button class="b" id="ga">+</button></div>
+<div class="avg" id="avg">–</div><ul id="gl"></ul></section>
+
+<section id="notes"><h2>ملاحظاتي<small>Mes notes</small></h2><textarea id="nt" placeholder="…"></textarea>
+<div class="row"><button class="b" id="cp">نسخ · Copier</button><button class="b r" id="cl">مسح · Effacer</button></div></section>
+
+<section id="well"><h2>معلومة طبية وتنفّس<small>Info médicale et respiration</small></h2>
+<div class="fact" id="fact"></div><button class="b" id="nf">معلومة أخرى · Autre info</button>
+<div class="circle" id="cir">جاهز · Prêt</div><button class="b g" id="br">تنفّس · Respirer</button>
+<p class="mute">شهيق 4 · ثبات 4 · زفير 6<br>Inspirer 4 · Retenir 4 · Expirer 6</p></section>
+
+<section id="backup"><h2>نسخة احتياطية<small>Sauvegarde</small></h2>
+<p class="mute">بياناتك محفوظة في هذا المتصفح فقط. انسخ النص واحفظه، ثم الصقه هنا للاستعادة.<br>Données stockées dans ce navigateur. Copiez le texte, gardez-le, puis collez-le ici pour restaurer.</p>
+<textarea id="bk" placeholder="…"></textarea>
+<div class="row"><button class="b" id="bc">نسخ · Copier</button><button class="b o" id="br2">استعادة · Restaurer</button></div></section>
+</main>
+<footer>تصميم · Conçu par <b>legrayde</b></footer>
+<script>
+const $=id=>document.getElementById(id);
+const store={get(k,d){try{const v=localStorage.getItem('lg_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('lg_'+k,JSON.stringify(v))}catch(e){}}};
+const tabs=[['archive','▤ الأرشيف'],['timer','⏱ المؤقّت'],['tasks','✎ المهام'],['exams','🎓 الامتحانات'],['cards','🃏 الأسئلة'],['grades','📊 المعدل'],['notes','📝 ملاحظات'],['well','🧬 معلومة وتنفّس'],['backup','💾 نسخة']];
+tabs.forEach(([id,l])=>{const b=document.createElement('button');b.textContent=l;b.onclick=()=>$(id).scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});b.dataset.id=id;$('nav').appendChild(b)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.id===e.target.id))}),{root:$('main'),threshold:.6});
+document.querySelectorAll('section').forEach(s=>io.observe(s));
+function item(text,extra,onDel,onClick,done){const li=document.createElement('li');if(done)li.className='done';const s=document.createElement('span');s.textContent=text;if(onClick){s.style.cursor='pointer';s.onclick=onClick}li.appendChild(s);if(extra){const c=document.createElement('span');c.className='cd';c.style.flex='none';c.textContent=extra;li.appendChild(c)}const x=document.createElement('button');x.className='x';x.textContent='✕';x.setAttribute('aria-label','delete');x.onclick=onDel;li.appendChild(x);return li}
+// timer
+let mins=store.get('mins',25),left=mins*60,iv=null,total=store.get('total',0);
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+const showT=()=>{$('t').textContent=fmt(left);$('stat').textContent='دقائق التركيز · Minutes : '+total};
+document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{if(iv)return;mins=Math.min(300,Math.max(1,mins+ +b.dataset.m));left=mins*60;store.set('mins',mins);showT()});
+$('go').onclick=()=>{if(iv){clearInterval(iv);iv=null;$('go').textContent='ابدأ · Démarrer';return}
+$('go').textContent='إيقاف · Pause';iv=setInterval(()=>{left--;if(left<=0){clearInterval(iv);iv=null;total+=mins;store.set('total',total);left=mins*60;$('go').textContent='ابدأ · Démarrer';try{navigator.vibrate&&navigator.vibrate(300)}catch(e){}}showT()},1000)};
+$('rs').onclick=()=>{clearInterval(iv);iv=null;left=mins*60;$('go').textContent='ابدأ · Démarrer';showT()};showT();
+// tasks
+let tasks=store.get('tasks',[]);
+function rt(){const u=$('tl');u.textContent='';tasks.forEach((t,i)=>u.appendChild(item(t.t,'',()=>{tasks.splice(i,1);store.set('tasks',tasks);rt()},()=>{t.d=!t.d;store.set('tasks',tasks);rt()},t.d)))}
+$('ta').onclick=()=>{const v=$('ti').value.trim();if(!v)return;tasks.push({t:v,d:false});$('ti').value='';store.set('tasks',tasks);rt()};
+$('ti').onkeydown=e=>{if(e.key==='Enter')$('ta').click()};rt();
+// exams
+let exams=store.get('exams',[]);
+function re(){const u=$('el');u.textContent='';exams.sort((a,b)=>a.d.localeCompare(b.d));exams.forEach((x,i)=>{const n=Math.ceil((new Date(x.d+'T00:00:00')-new Date())/864e5);u.appendChild(item(x.n,n<0?'—':(n===0?'اليوم · Aujourd’hui':n+' j'),()=>{exams.splice(i,1);store.set('exams',exams);re()}))})}
+$('ea').onclick=()=>{const n=$('en').value.trim(),d=$('ed').value;if(!n||!d)return;exams.push({n,d});$('en').value='';store.set('exams',exams);re()};re();
+// question bank (général, première année)
+const BANK={
+'Anatomie':[
+['Quels sont les trois plans anatomiques de référence ?','Sagittal (sépare gauche et droite), frontal ou coronal (sépare avant et arrière), transversal ou horizontal (sépare haut et bas).'],
+['Quelle est la position anatomique de référence ?','Debout, face à l’observateur, bras le long du corps, paumes tournées vers l’avant, pieds joints.'],
+['Combien d’os chez l’adulte, et quelles sont les deux parties du squelette ?','206 os. Squelette axial (crâne, rachis, thorax) et squelette appendiculaire (membres et ceintures).'],
+['Quelles sont les quatre cavités du cœur ?','Oreillette droite, oreillette gauche, ventricule droit, ventricule gauche. Le côté droit envoie le sang aux poumons, le côté gauche l’envoie à l’aorte.'],
+['Quelles sont les régions du rachis ?','7 vertèbres cervicales, 12 thoraciques, 5 lombaires, le sacrum (5 vertèbres soudées) et le coccyx : 33 vertèbres au total.'],
+['Quels sont les trois types d’articulations ?','Fibreuses (immobiles), cartilagineuses (peu mobiles) et synoviales (très mobiles).'],
+['Quels muscles assurent la respiration ?','Le diaphragme (principal) et les muscles intercostaux. L’expiration normale est passive.']],
+'Histologie':[
+['Quels sont les quatre tissus fondamentaux ?','Épithélial, conjonctif, musculaire et nerveux.'],
+['Quelles sont les caractéristiques du tissu épithélial ?','Il recouvre ou tapisse (revêtement) ou sécrète (glandes). Ses cellules sont jointives, il repose sur une lame basale et n’a pas de vaisseaux sanguins.'],
+['Quels sont les trois types de tissu musculaire ?','Strié squelettique (volontaire), strié cardiaque (involontaire) et lisse (involontaire).'],
+['Citez des cellules du tissu conjonctif.','Fibroblastes (fabriquent les fibres et la matrice), macrophages, mastocytes, adipocytes, plasmocytes.'],
+['Quelles sont les parties d’un neurone ?','Le corps cellulaire (péricaryon), les dendrites (reçoivent l’information) et l’axone (conduit l’influx nerveux).'],
+['Quelle est la coloration standard en histologie ?','Hématoxyline-éosine : l’hématoxyline colore les noyaux en bleu-violet, l’éosine colore le cytoplasme en rose.']],
+'Biochimie':[
+['Quelles sont les quatre grandes familles de biomolécules ?','Glucides, lipides, protéines et acides nucléiques.'],
+['Qu’est-ce qu’une enzyme ?','Un catalyseur biologique, le plus souvent une protéine. Elle accélère une réaction en diminuant l’énergie d’activation, sans être consommée, et elle est spécifique de son substrat.'],
+['Quels facteurs influencent l’activité d’une enzyme ?','La température, le pH, la concentration du substrat et de l’enzyme, et la présence d’inhibiteurs.'],
+['Qu’est-ce qu’une liaison peptidique ?','Une liaison covalente entre le groupe carboxyle d’un acide aminé et le groupe amine du suivant, avec perte d’une molécule d’eau.'],
+['Quel est le rôle de l’ATP ?','C’est la principale monnaie énergétique de la cellule : son hydrolyse libère l’énergie utilisée par les réactions.'],
+['Quelles sont les grandes étapes de la dégradation du glucose ?','Glycolyse (cytoplasme), cycle de Krebs (matrice de la mitochondrie), puis chaîne respiratoire (membrane interne de la mitochondrie).'],
+['Quels sont les quatre niveaux de structure d’une protéine ?','Primaire (séquence des acides aminés), secondaire (hélice α, feuillet β), tertiaire (repliement en 3D) et quaternaire (assemblage de plusieurs chaînes).']],
+'Physiologie':[
+['Qu’est-ce que l’homéostasie ?','Le maintien de l’équilibre du milieu intérieur (température, pH, glycémie…) grâce à des mécanismes de régulation, surtout le rétrocontrôle négatif.'],
+['Quel est le trajet du sang dans la petite et la grande circulation ?','Petite : ventricule droit → artères pulmonaires → poumons → veines pulmonaires → oreillette gauche. Grande : ventricule gauche → aorte → organes → veines caves → oreillette droite.'],
+['Quelle est la fréquence cardiaque normale au repos chez l’adulte ?','Entre 60 et 100 battements par minute.'],
+['Quel est le rôle du rein ?','Filtrer le sang, éliminer les déchets, réguler l’eau, les électrolytes et le pH. Son unité fonctionnelle est le néphron.'],
+['Quelles hormones du pancréas régulent la glycémie ?','L’insuline (cellules β) diminue la glycémie ; le glucagon (cellules α) l’augmente.'],
+['Quel est le potentiel de repos d’un neurone ?','Environ −70 mV, maintenu notamment par la pompe Na⁺/K⁺ ATPase (3 Na⁺ sortent, 2 K⁺ entrent).'],
+['Quel est le rôle des globules rouges ?','Transporter l’oxygène grâce à l’hémoglobine.']],
+'Biologie cellulaire':[
+['Que dit la théorie cellulaire ?','Tout être vivant est composé de cellules, la cellule est l’unité de base du vivant, et toute cellule provient d’une cellule préexistante.'],
+['Quelle différence entre cellule procaryote et eucaryote ?','La cellule eucaryote a un noyau entouré d’une enveloppe et des organites à membrane ; la procaryote n’a pas de noyau (son ADN est dans le nucléoïde).'],
+['Quel est le rôle de la mitochondrie ?','Produire de l’ATP par la respiration cellulaire. Elle possède son propre ADN.'],
+['Quels sont les rôles du réticulum endoplasmique rugueux et de l’appareil de Golgi ?','Le réticulum rugueux (avec ses ribosomes) synthétise des protéines ; l’appareil de Golgi les modifie, les trie et les empaquette.'],
+['Quelles sont les phases du cycle cellulaire ?','Interphase (G1, S, G2), puis mitose (prophase, métaphase, anaphase, télophase) et cytocinèse.'],
+['Quelle différence entre mitose et méiose ?','La mitose donne 2 cellules filles identiques (diploïdes) ; la méiose donne 4 cellules haploïdes génétiquement différentes (les gamètes).'],
+['Quelle est la structure de la membrane plasmique ?','Une bicouche de phospholipides avec des protéines et du cholestérol (modèle de la mosaïque fluide).']]
+};
+let cur=store.get('cur',''),cards=[],ci=0,flip=false;
+function rc(){const c=cards[ci];$('cv').textContent=c?(flip?c[1]:c[0]):'اختر مادة · Choisissez une matière'}
+function rl(){const u=$('ql');u.textContent='';if(!cur||!BANK[cur])return;const h=document.createElement('h2');h.textContent=cur+' · '+BANK[cur].length;u.appendChild(h);BANK[cur].forEach(x=>{const e=document.createElement('details');const m=document.createElement('summary');m.textContent=x[0];const p=document.createElement('p');p.textContent=x[1];e.appendChild(m);e.appendChild(p);u.appendChild(e)})}
+function pick(n){cur=n;store.set('cur',n);cards=BANK[n]||[];ci=0;flip=false;document.querySelectorAll('#subj button').forEach(b=>b.classList.toggle('g',b.textContent===n));rc();rl()}
+Object.keys(BANK).forEach(n=>{const b=document.createElement('button');b.className='b';b.textContent=n;b.onclick=()=>pick(n);$('subj').appendChild(b)});
+$('cv').onclick=()=>{flip=!flip;rc()};$('cv').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('cv').click()}};
+$('cn').onclick=()=>{if(!cards.length)return;ci=(ci+1)%cards.length;flip=false;rc()};
+if(cur&&BANK[cur])pick(cur);else rc();
+// grades
+let gr=store.get('gr',[]);
+function rg(){const u=$('gl');u.textContent='';let s=0,c=0;gr.forEach((g,i)=>{s+=g.v*g.c;c+=g.c;u.appendChild(item(g.n,g.v+'/20 ×'+g.c,()=>{gr.splice(i,1);store.set('gr',gr);rg()}))});$('avg').textContent=c?(s/c).toFixed(2)+' / 20':'–'}
+$('ga').onclick=()=>{const n=$('gn').value.trim(),v=parseFloat($('gv').value),c=parseFloat($('gc').value)||1;if(!n||isNaN(v)||v<0||v>20)return;gr.push({n,v,c});$('gn').value=$('gv').value=$('gc').value='';store.set('gr',gr);rg()};rg();
+// facts
+const facts=['القلب يضخ نحو 100 ألف نبضة يوميًا.<br>Le cœur bat environ 100 000 fois par jour.','الجلد أكبر عضو في جسم الإنسان.<br>La peau est le plus grand organe du corps.','الدماغ يستهلك نحو 20% من طاقة الجسم.<br>Le cerveau consomme environ 20 % de l’énergie du corps.','عند البالغ 206 عظمة.<br>L’adulte a 206 os.','الكبد قادر على تجديد نفسه.<br>Le foie peut se régénérer.'];let fi=0;
+const sf=()=>{$('fact').innerHTML=facts[fi]};$('nf').onclick=()=>{fi=(fi+1)%facts.length;sf()};sf();
+// breath
+let bt=null;$('br').onclick=()=>{if(bt){clearInterval(bt);bt=null;$('cir').textContent='جاهز · Prêt';$('cir').style.transform='';return}
+const ph=[['شهيق · Inspire',4,1.25],['ثبات · Retiens',4,1.25],['زفير · Expire',6,1]];let p=0,c=0,n=0;const run=()=>{const x=ph[p];$('cir').textContent=x[0];$('cir').style.transitionDuration=x[1]+'s';$('cir').style.transform='scale('+x[2]+')'};run();
+bt=setInterval(()=>{c++;n++;if(c>=ph[p][1]){c=0;p=(p+1)%3;run()}if(n>=120){$('br').click()}},1000)};
+// backup
+const keys=()=>{const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('lg_'))o[k]=localStorage.getItem(k)}}catch(e){}return o};
+$('bc').onclick=()=>{const t=JSON.stringify(keys());$('bk').value=t;try{navigator.clipboard.writeText(t)}catch(e){$('bk').select()}};
+$('br2').onclick=()=>{try{const o=JSON.parse($('bk').value);Object.keys(o).forEach(k=>{if(k.startsWith('lg_'))localStorage.setItem(k,o[k])});location.reload()}catch(e){$('bk').value='النص غير صالح · Texte invalide'}};
+// notes
+$('nt').value=store.get('notes','');$('nt').oninput=()=>store.set('notes',$('nt').value);
+$('cp').onclick=()=>{try{navigator.clipboard.writeText($('nt').value)}catch(e){$('nt').select()}};
+$('cl').onclick=()=>{$('nt').value='';store.set('notes','')};
+</script>
+</body>
+</html>
